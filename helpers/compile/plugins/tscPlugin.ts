@@ -17,6 +17,7 @@ function bundleTypeDefinitions(filename: string, outfile: string) {
       projectFolder: process.cwd(),
       mainEntryPointFilePath: filename,
       bundledPackages: [
+        // TODO make this automatic via devDependencies
         'decimal.js',
         'detect-runtime',
         'sql-template-tag',

@@ -6,11 +6,7 @@ import path from 'path'
 
 const debug = Debug('prisma:engines')
 export function getEnginesPath() {
-  try {
-    return path.dirname(require.resolve('@prisma/engines/package.json'))
-  } catch {
-    return path.join(__dirname, '..')
-  }
+  return path.join(__dirname, '..')
 }
 export const DEFAULT_CLI_QUERY_ENGINE_BINARY_TYPE = BinaryType.QueryEngineLibrary
 /**

@@ -1,3 +1,8 @@
+import * as logger from './logger'
+import * as fsFunctional from './utils/fs-functional'
+import * as fsUtils from './utils/fs-utils'
+import * as wasm from './wasm'
+
 export { checkUnsupportedDataProxy } from './cli/checkUnsupportedDataProxy'
 export { getGeneratorSuccessMessage } from './cli/getGeneratorSuccessMessage'
 export {
@@ -27,7 +32,22 @@ export type {
 export { arg, format, isError } from './cli/utils'
 export { ClientEngineType, DEFAULT_CLIENT_ENGINE_TYPE, getClientEngineType } from './client/getClientEngineType'
 export { credentialsToUri, protocolToConnectorType, uriToCredentials } from './convertCredentials'
-export * from './engine-commands'
+export {
+  type ConfigMetaFormat,
+  formatSchema,
+  getConfig,
+  getDirectUrl,
+  getDMMF,
+  type GetDMMFOptions,
+  getEffectiveUrl,
+  getEnginesMetaInfo,
+  getEngineVersion,
+  getLintWarningsAsText,
+  handleLintPanic,
+  lintSchema,
+  resolveUrl,
+  validate,
+} from './engine-commands'
 export { Generator } from './Generator'
 export type { GeneratorPaths } from './get-generators/generatorResolvers/generatorResolvers'
 export type { ProviderAliases } from './get-generators/getGenerators'
@@ -36,7 +56,8 @@ export { fixBinaryTargets } from './get-generators/utils/fixBinaryTargets'
 export { printGeneratorConfig } from './get-generators/utils/printGeneratorConfig'
 export { getPackedPackage } from './getPackedPackage'
 export { highlightDatamodel, highlightSql, highlightTS } from './highlight/highlight'
-export * as logger from './logger'
+
+export { logger }
 export type { MigrateTypes } from './migrateTypes'
 export { ErrorArea, isRustPanic, RustPanic } from './panic'
 export { BinaryType } from './resolveBinary'
@@ -45,7 +66,14 @@ export type { SchemaEngineLogLine } from './schemaEngineCommands'
 export { canConnectToDatabase, createDatabase, dropDatabase } from './schemaEngineCommands'
 export { SchemaEngineExitCode } from './schemaEngineCommands'
 export { sendPanic } from './sendPanic'
-export * from './tracing/types'
+export {
+  type EngineSpan,
+  type EngineSpanEvent,
+  type ExtendedSpanOptions,
+  type PrismaInstrumentationGlobalValue,
+  type SpanCallback,
+  type TracingHelper,
+} from './tracing/types'
 export type { DatabaseCredentials } from './types'
 export { assertNever } from './utils/assertNever'
 export { default as byline } from './utils/byline'
@@ -56,8 +84,8 @@ export { drawBox } from './utils/drawBox'
 export { extractPreviewFeatures } from './utils/extractPreviewFeatures'
 export { formatms } from './utils/formatms'
 export { formatTable } from './utils/formatTable'
-export * as fsFunctional from './utils/fs-functional'
-export * as fsUtils from './utils/fs-utils'
+export { fsFunctional }
+export { fsUtils }
 export { getCommandWithExecutor } from './utils/getCommandWithExecutor'
 export type { EnvPaths } from './utils/getEnvPaths'
 export { getEnvPaths } from './utils/getEnvPaths'
@@ -89,6 +117,7 @@ export { trimBlocksFromSchema, trimNewLine } from './utils/trimBlocksFromSchema'
 export { type LoadedEnv, tryLoadEnvs } from './utils/tryLoadEnvs'
 export { vercelPkgPathRegex } from './utils/vercelPkgPathRegex'
 export { warnOnce } from './warnOnce'
-export * as wasm from './wasm'
+
+export { wasm }
 export type { Platform } from '@prisma/get-platform'
 export { getNodeAPIName, getPlatform } from '@prisma/get-platform'
