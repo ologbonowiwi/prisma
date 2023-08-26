@@ -8,5 +8,6 @@ void build([
     outfile: 'dist/index',
     bundle: true,
     plugins: [copyWasmPlugin],
+    sourcemap: true,
   },
 ])
