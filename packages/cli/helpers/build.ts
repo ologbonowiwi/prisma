@@ -6,6 +6,7 @@ import path from 'path'
 
 import type { BuildOptions } from '../../../helpers/compile/build'
 import { build } from '../../../helpers/compile/build'
+import { copyWasmPlugin } from '../../../helpers/compile/plugins/copyWasmPlugin'
 import { run } from '../../../helpers/compile/run'
 
 /**
@@ -38,19 +39,6 @@ const cliLifecyclePlugin: esbuild.Plugin = {
       // we copy the contents from xdg-open to build
       await fs.promises.copyFile(path.join(require.resolve('open/package.json'), '../xdg-open'), './build/xdg-open')
 
-      // as a convention, we install all Prisma's Wasm modules in the internals package
-      const wasmResolveDir = path.join(__dirname, '..', '..', 'internals', 'node_modules')
-
-      // TODO: create a glob helper for this to import all the wasm modules having pattern /^@prisma\/.*-wasm$/
-      const prismaWasmFile = path.join(
-        wasmResolveDir,
-        '@prisma',
-        'prisma-schema-wasm',
-        'src',
-        'prisma_schema_build_bg.wasm',
-      )
-      await fs.promises.copyFile(prismaWasmFile, './build/prisma_schema_build_bg.wasm')
-
       await replaceFirstLine('./build/index.js', '#!/usr/bin/env node\n')
 
       chmodX('./build/index.js')
@@ -64,7 +52,7 @@ const cliBuildConfig: BuildOptions = {
   entryPoints: ['src/bin.ts'],
   outfile: 'build/index',
   external: ['@prisma/engines'],
-  plugins: [cliLifecyclePlugin],
+  plugins: [cliLifecyclePlugin, copyWasmPlugin],
   bundle: true,
   emitTypes: false,
 }
