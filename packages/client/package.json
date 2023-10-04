@@ -99,7 +99,7 @@
     "@swc/jest": "0.2.29",
     "@timsuchanek/copy": "1.4.5",
     "@types/debug": "4.1.9",
-    "@types/fs-extra": "9.0.13",
+    "@types/fs-extra": "11.0.2",
     "@types/jest": "29.5.5",
     "@types/js-levenshtein": "1.1.1",
     "@types/mssql": "9.1.0",
